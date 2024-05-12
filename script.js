@@ -131,8 +131,8 @@ function draw() {
 }
 
 function end() {
-    window.location.href = "index.html";
     stopGame()
+    window.location.href = "index.html";
     localStorage.clear()
     name1Input.value = ""
     name2Input.value = ""
