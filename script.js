@@ -76,7 +76,7 @@ function cellClicked(e) {
             const winner = currentPlayer === playerOne? playerOneName : playerTwoName;
             result.textContent = `${winner} has won!`
             winningBlocks.map(block => cells[block].style.backgroundColor= currentPlayer === playerOne? blueWinnerIndicator: redWinnerIndicator)
-            
+            displayWinner()
             
             stopGame()
             return;
@@ -137,6 +137,16 @@ function end() {
     name1Input.value = ""
     name2Input.value = ""
 }
+function displayWinner(){
+    document.getElementById("main-el").style.display= "none"
+    document.getElementById("section-el").style.display= "block"
+    document.getElementById("display").textContent =`${winner} has won`
+    winningBlocks.map(block => cells[block].style.backgroundColor= currentPlayer === playerOne? blueWinnerIndicator: redWinnerIndicator)}
+    setTimeout(function(){
+        document.getElementById("main-el").style.display= "block"
+        document.getElementById("section-el").style.display= "none"
+    },5000)
+   
 
 startBtn.addEventListener("click", startGame)
 restartBtn.addEventListener("click", restart)
