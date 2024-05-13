@@ -11,8 +11,7 @@ const playerTwoColor = getComputedStyle(document.body).getPropertyValue('--PLAYE
 const drawColor = getComputedStyle(document.body).getPropertyValue('--DRAW-COLOR')
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Your script code here
-    // Attach event listener to the form
+
     playForm.addEventListener("submit", function(event) {
         // Prevent the form from submitting
         event.preventDefault();
