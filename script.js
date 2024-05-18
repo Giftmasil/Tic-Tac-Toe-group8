@@ -46,11 +46,24 @@ const winningConditions = [
     [0, 4, 8],
     [2, 4, 6]
 ]
+let audio = new Audio("the-epic-2-by-rafael-krux(chosic.com).mp3");
+let audioWin = new Audio('WhatsApp Audio 2024-05-18 at 14.10.51_5b80a3ab.mp3');
+
+function stopAudio(audioElement) {
+    audioElement.pause();
+    audioElement.currentTime = 0; // Reset playback position to the beginning
+}
+
 
 function startGame() {
     for (let i = 0; i < cells.length; i++) {
         cells[i].addEventListener("click", cellClicked)
     }
+    audio.autoplay = true;
+    audio.loop = true;
+    audio.play()
+    document.body.appendChild(audio);
+
     result.textContent = `${playerOneName}'s turn`
 }
 
@@ -75,6 +88,8 @@ function cellClicked(e) {
             const winner = currentPlayer === playerOne? playerOneName : playerTwoName;
             result.textContent = `${winner} has won!`
             winningBlocks.map(block => cells[block].style.backgroundColor= currentPlayer === playerOne? blueWinnerIndicator: redWinnerIndicator)
+            stopAudio(audio)
+            audioWin.play();
             
             
             stopGame()
@@ -124,12 +139,16 @@ function draw() {
         result.textContent = "Draw!!"
 
         result.style.animation = drawColor
+        stopAudio(audio)
+        stopAudio(audioWin)
 
         stopGame()
     } 
 }
 
 function end() {
+    stopAudio(audio)
+    stopAudio(audioWin)
     stopGame()
     window.location.href = "index.html";
     localStorage.clear()
